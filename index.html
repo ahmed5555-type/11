@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>AccuCore Nexus 2025 | المنصة التعليمية المتكاملة</title>
+    
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ============================================
+           TABLE OF CONTENTS
+           1. CSS Variables & Theme System
+           2. Reset & Base Styles
+           3. Premium Header & Navigation
+           4. Hero Section
+           5. Subject Tabs
+           6. Video Cards
+           7. Newsletter Section
+           8. Footer
+           9. Back to Top & Progress Bar
+           10. Responsive Design
+        ============================================ */
+
+        /* --------------------------------------------
+           1. CSS VARIABLES - SINGLE BEAUTIFUL THEME
+        -------------------------------------------- */
+        :root {
+            /* Core Colors - Beautiful Teal & Purple Gradient */
+            --color-primary: #14b8a6;
+            --color-primary-dark: #0d9488;
+            --color-secondary: #8b5cf6;
+            --color-secondary-dark: #7c3aed;
+            --color-accent: #f59e0b;
+            
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            --gradient-hover: linear-gradient(135deg, var(--color-primary-dark), var(--color-secondary-dark));
+            --gradient-glow: radial-gradient(circle at 30% 20%, rgba(20, 184, 166, 0.15), transparent 70%);
+            
+            /* Light Mode Colors */
+            --bg-light: #f8fafc;
+            --surface-light: #ffffff;
+            --surface-elevated-light: #f1f5f9;
+            --text-light-primary: #0f172a;
+            --text-light-secondary: #475569;
+            --border-light: #e2e8f0;
+            
+            /* Dark Mode Colors */
+            --bg-dark: #0a0c15;
+            --surface-dark: #11131f;
+            --surface-elevated-dark: #1a1d2b;
+            --text-dark-primary: #f1f5f9;
+            --text-dark-secondary: #94a3b8;
+            --border-dark: #1e293b;
+            
+            /* Transitions */
+            --transition-fast: 0.2s ease;
+            --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --shadow-glow: 0 0 20px rgba(20, 184, 166, 0.3);
+            
+            /* Border Radius */
+            --radius-sm: 0.5rem;
+            --radius-md: 1rem;
+            --radius-lg: 1.5rem;
+            --radius-xl: 2rem;
+            --radius-full: 9999px;
+        }
+
+        /* --------------------------------------------
+           2. RESET & BASE STYLES
+        -------------------------------------------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.6;
+            transition: background-color var(--transition-smooth), color var(--transition-smooth);
+            overflow-x: hidden;
+        }
+
+        /* Light Mode Default */
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-light-primary);
+        }
+
+        body.dark-mode {
+            background-color: var(--bg-dark);
+            color: var(--text-dark-primary);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* --------------------------------------------
+           3. PREMIUM HEADER & NAVIGATION
+        -------------------------------------------- */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all var(--transition-smooth);
+        }
+
+        .header.scrolled {
+            padding: 0.75rem 0;
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: var(--shadow-md);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        body.dark-mode .header.scrolled {
+            background: rgba(10, 12, 21, 0.9);
+            border-bottom: 1px solid var(--border-dark);
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        /* Logo */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform var(--transition-fast);
+        }
+
+        .logo:hover .logo-icon {
+            transform: scale(1.05);
+        }
+
+        .logo-icon i {
+            font-size: 1.6rem;
+            color: white;
+        }
+
+        .logo-text {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-badge {
+            background: var(--color-accent);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.2rem 0.6rem;
+            border-radius: var(--radius-full);
+            margin-right: 0.5rem;
+            vertical-align: middle;
+        }
+
+        /* Desktop Navigation */
+        .nav-desktop {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .nav-link {
+            padding: 0.6rem 1.3rem;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--text-light-secondary);
+            transition: all var(--transition-fast);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        body.dark-mode .nav-link {
+            color: var(--text-dark-secondary);
+        }
+
+        .nav-link:hover {
+            background: var(--gradient-primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Search Bar */
+        .search-wrapper {
+            position: relative;
+        }
+
+        .search-input {
+            background: var(--surface-light);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-full);
+            padding: 0.7rem 1rem 0.7rem 2.5rem;
+            font-size: 0.9rem;
+            width: 240px;
+            transition: all var(--transition-fast);
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body.dark-mode .search-input {
+            background: var(--surface-dark);
+            border-color: var(--border-dark);
+            color: var(--text-dark-primary);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
+            width: 280px;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light-secondary);
+            font-size: 0.9rem;
+        }
+
+        body.dark-mode .search-icon {
+            color: var(--text-dark-secondary);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            background: var(--surface-light);
+            border: 1px solid var(--border-light);
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            color: var(--text-light-secondary);
+        }
+
+        body.dark-mode .theme-toggle {
+            background: var(--surface-dark);
+            border-color: var(--border-dark);
+            color: var(--text-dark-secondary);
+        }
+
+        .theme-toggle:hover {
+            background: var(--gradient-primary);
+            border-color: transparent;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: var(--surface-light);
+            border: 1px solid var(--border-light);
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-full);
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.3rem;
+        }
+
+        body.dark-mode .mobile-menu-btn {
+            background: var(--surface-dark);
+            border-color: var(--border-dark);
+            color: var(--text-dark-primary);
+        }
+
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 320px;
+            height: 100vh;
+            background: var(--surface-light);
+            z-index: 1001;
+            transition: right var(--transition-smooth);
+            padding: 5rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            box-shadow: var(--shadow-xl);
+        }
+
+        body.dark-mode .mobile-nav {
+            background: var(--surface-dark);
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav-link {
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 600;
+            color: var(--text-light-primary);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all var(--transition-fast);
+        }
+
+        body.dark-mode .mobile-nav-link {
+            color: var(--text-dark-primary);
+        }
+
+        .mobile-nav-link:hover {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .mobile-nav-close {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            background: transparent;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light-secondary);
+        }
+
+        /* --------------------------------------------
+           4. HERO SECTION
+        -------------------------------------------- */
+        .hero {
+            padding: 9rem 0 5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-glow);
+            pointer-events: none;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: var(--text-light-secondary);
+        }
+
+        body.dark-mode .hero-subtitle {
+            color: var(--text-dark-secondary);
+        }
+
+        .hero-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--gradient-primary);
+            padding: 1rem 2.5rem;
+            border-radius: var(--radius-full);
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all var(--transition-fast);
+            box-shadow: var(--shadow-md);
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* --------------------------------------------
+           5. SUBJECT TABS
+        -------------------------------------------- */
+        .subjects-section {
+            margin: 3rem 0;
+        }
+
+        .tabs-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 3rem;
+        }
+
+        .tab-btn {
+            background: var(--surface-light);
+            border: 1px solid var(--border-light);
+            padding: 0.75rem 1.8rem;
+            border-radius: var(--radius-full);
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: var(--text-light-primary);
+        }
+
+        body.dark-mode .tab-btn {
+            background: var(--surface-dark);
+            border-color: var(--border-dark);
+            color: var(--text-dark-primary);
+        }
+
+        .tab-btn.active,
+        .tab-btn:hover {
+            background: var(--gradient-primary);
+            border-color: transparent;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* --------------------------------------------
+           6. VIDEO CARDS
+        -------------------------------------------- */
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 2rem;
+        }
+
+        .video-card {
+            background: var(--surface-light);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            transition: all var(--transition-smooth);
+            border: 1px solid var(--border-light);
+            cursor: pointer;
+        }
+
+        body.dark-mode .video-card {
+            background: var(--surface-dark);
+            border-color: var(--border-dark);
+        }
+
+        .video-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .video-thumbnail {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--surface-elevated-light);
+        }
+
+        body.dark-mode .video-thumbnail {
+            background-color: var(--surface-elevated-dark);
+        }
+
+        .video-thumbnail::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.3);
+            transition: background var(--transition-fast);
+        }
+
+        .video-card:hover .video-thumbnail::after {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .play-icon {
+            position: relative;
+            z-index: 2;
+            font-size: 3.5rem;
+            color: white;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+            transition: transform var(--transition-fast);
+        }
+
+        .video-card:hover .play-icon {
+            transform: scale(1.1);
+        }
+
+        .video-info {
+            padding: 1.5rem;
+        }
+
+        .video-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+        }
+
+        .video-description {
+            font-size: 0.9rem;
+            color: var(--text-light-secondary);
+            margin-bottom: 1.25rem;
+            line-height: 1.5;
+        }
+
+        body.dark-mode .video-description {
+            color: var(--text-dark-secondary);
+        }
+
+        .watch-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: transparent;
+            border: 2px solid var(--color-primary);
+            padding: 0.6rem 1.5rem;
+            border-radius: var(--radius-full);
+            font-weight: 700;
+            color: var(--color-primary);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .watch-btn:hover {
+            background: var(--gradient-primary);
+            border-color: transparent;
+            color: white;
+            transform: translateX(-5px);
+        }
+
+        /* Empty State */
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-light-secondary);
+            font-size: 1.1rem;
+        }
+
+        /* --------------------------------------------
+           7. NEWSLETTER SECTION
+        -------------------------------------------- */
+        .newsletter {
+            background: var(--gradient-primary);
+            border-radius: var(--radius-xl);
+            padding: 3rem 2rem;
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .newsletter h2 {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .newsletter p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            border-radius: var(--radius-full);
+            overflow: hidden;
+        }
+
+        body.dark-mode .newsletter-form {
+            background: var(--surface-dark);
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: none;
+            font-size: 1rem;
+            outline: none;
+            background: transparent;
+            color: var(--text-light-primary);
+        }
+
+        body.dark-mode .newsletter-input {
+            color: var(--text-dark-primary);
+        }
+
+        .newsletter-input::placeholder {
+            color: var(--text-light-secondary);
+        }
+
+        .newsletter-btn {
+            background: var(--color-accent);
+            border: none;
+            padding: 0 2rem;
+            font-weight: 700;
+            cursor: pointer;
+            color: white;
+            transition: background var(--transition-fast);
+        }
+
+        .newsletter-btn:hover {
+            background: #e67e22;
+        }
+
+        /* --------------------------------------------
+           8. FOOTER
+        -------------------------------------------- */
+        .footer {
+            background: var(--surface-light);
+            border-top: 1px solid var(--border-light);
+            padding: 3rem 0 1.5rem;
+            margin-top: 3rem;
+        }
+
+        body.dark-mode .footer {
+            background: var(--surface-dark);
+            border-color: var(--border-dark);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p {
+            color: var(--text-light-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        body.dark-mode .footer-section p {
+            color: var(--text-dark-secondary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: var(--surface-elevated-light);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-fast);
+            color: var(--text-light-secondary);
+        }
+
+        body.dark-mode .social-link {
+            background: var(--surface-elevated-dark);
+            color: var(--text-dark-secondary);
+        }
+
+        .social-link:hover {
+            background: var(--gradient-primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-light);
+            color: var(--text-light-secondary);
+            font-size: 0.85rem;
+        }
+
+        body.dark-mode .footer-bottom {
+            border-color: var(--border-dark);
+            color: var(--text-dark-secondary);
+        }
+
+        /* --------------------------------------------
+           9. BACK TO TOP & PROGRESS BAR
+        -------------------------------------------- */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: var(--gradient-primary);
+            z-index: 1002;
+            transition: width 0.1s ease;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition-smooth);
+            z-index: 99;
+            box-shadow: var(--shadow-md);
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* --------------------------------------------
+           10. RESPONSIVE DESIGN
+        -------------------------------------------- */
+        @media (max-width: 1024px) {
+            .nav-desktop {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: flex;
+            }
+            .hero-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+            .hero {
+                padding: 7rem 0 3rem;
+            }
+            .hero-title {
+                font-size: 2rem;
+            }
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            .videos-grid {
+                grid-template-columns: 1fr;
+            }
+            .search-wrapper {
+                display: none;
+            }
+            .logo-text {
+                font-size: 1.3rem;
+            }
+            .logo-icon {
+                width: 40px;
+                height: 40px;
+            }
+            .logo-icon i {
+                font-size: 1.3rem;
+            }
+            .newsletter h2 {
+                font-size: 1.5rem;
+            }
+            .newsletter-form {
+                flex-direction: column;
+                border-radius: var(--radius-md);
+            }
+            .newsletter-input {
+                padding: 0.8rem;
+                text-align: center;
+            }
+            .newsletter-btn {
+                padding: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-container">
+                <a href="#" class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="logo-text">
+                        AccuCore<span class="logo-badge">2025</span>
+                    </div>
+                </a>
+                
+                <nav class="nav-desktop">
+                    <a href="#hero" class="nav-link"><i class="fas fa-home"></i> الرئيسية</a>
+                    <a href="#subjects" class="nav-link"><i class="fas fa-graduation-cap"></i> المواد</a>
+                    <a href="#contact" class="nav-link"><i class="fas fa-envelope"></i> تواصل</a>
+                </nav>
+                
+                <div class="search-wrapper">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-input" id="searchInput" placeholder="ابحث عن فيديو...">
+                </div>
+                
+                <button class="theme-toggle" id="themeToggle" title="تغيير المظهر">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <button class="mobile-nav-close" id="mobileNavClose">
+            <i class="fas fa-times"></i>
+        </button>
+        <a href="#hero" class="mobile-nav-link"><i class="fas fa-home"></i> الرئيسية</a>
+        <a href="#subjects" class="mobile-nav-link"><i class="fas fa-graduation-cap"></i> المواد الدراسية</a>
+        <a href="#contact" class="mobile-nav-link"><i class="fas fa-envelope"></i> اتصل بنا</a>
+        <div style="margin-top: 1rem;">
+            <div class="search-wrapper" style="display: block; width: 100%;">
+                <i class="fas fa-search search-icon" style="right: 1rem;"></i>
+                <input type="text" id="mobileSearchInput" class="search-input" placeholder="ابحث عن فيديو..." style="width: 100%;">
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <h1 class="hero-title" id="heroTitle">AccuCore 2025</h1>
+            <p class="hero-subtitle">منصة تعليمية متكاملة | 7 مسارات دراسية احترافية | محتوى متجدد بجودة عالية</p>
+            <a href="#subjects" class="hero-btn"><i class="fas fa-arrow-down"></i> استكشف المواد</a>
+        </div>
+    </section>
+
+    <!-- Subjects Section -->
+    <section id="subjects" class="subjects-section">
+        <div class="container">
+            <div class="tabs-container" id="tabsContainer"></div>
+            <div id="videosContainer" class="videos-grid"></div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section id="contact" class="container">
+        <div class="newsletter">
+            <h2>انضم إلى مجتمع AccuCore</h2>
+            <p>احصل على أحدث المحتويات والدروس مباشرة إلى بريدك</p>
+            <form class="newsletter-form" id="subscribeForm">
+                <input type="email" class="newsletter-input" placeholder="بريدك الإلكتروني" required>
+                <button type="submit" class="newsletter-btn"><i class="fas fa-paper-plane"></i> اشتراك</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>AccuCore 2025</h3>
+                    <p>منصة تعليمية متطورة في المحاسبة والإدارة والاقتصاد والتأمين، تقدم محتوى احترافي بجودة عالية.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>المواد الدراسية</h3>
+                    <p>📘 التأمين</p>
+                    <p>📊 المحاسبة الإدارية</p>
+                    <p>🚚 إدارة مواد وامداد</p>
+                    <p>🌍 اقتصاد دولي</p>
+                    <p>💰 مبادئ المحاسبة الضريبية</p>
+                    <p>🔍 مبادئ الرقابة والمراجعة</p>
+                    <p>👥 إدارة الموارد البشرية</p>
+                </div>
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <p><i class="fas fa-envelope"></i> support@accucore.com</p>
+                    <p><i class="fas fa-phone"></i> +20 123 456 7890</p>
+                    <p><i class="fas fa-map-marker-alt"></i> كلية التجارة - جامعة دمنهور</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 AccuCore - جميع الحقوق محفوظة</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script>
+        // ============================================
+        // VIDEO DATA - 7 SUBJECTS WITH 6 VIDEOS EACH
+        // ============================================
+        const subjectsData = [
+            { id: "insurance", name: "التأمين", icon: "fas fa-shield-alt", videos: [
+                { title: "مقدمة في علم التأمين", desc: "أساسيات التأمين وأنواعه وأهميته في العصر الحديث", url: "https://www.youtube.com/watch?v=1hWbccrddAI" },
+                { title: "التأمين الصحي الشامل", desc: "تحليل شامل لنماذج التأمين الصحي وأنظمته", url: "https://youtu.be/gHcE1UoVcR4" },
+                { title: "تأمينات الحياة والتخطيط المالي", desc: "استراتيجيات إدارة وثائق التأمين والتخطيط للمستقبل", url: "https://youtu.be/XvXs8R1kW0U" },
+                { title: "إدارة المخاطر في شركات التأمين", desc: "أساليب قياس وتحليل المخاطر المالية", url: "https://youtu.be/FkYjl1lE_5I" },
+                { title: "التأمين البحري والجوي", desc: "تغطيات ومخاطر النقل الدولي", url: "https://youtu.be/1A8fT4lPTow" },
+                { title: "إعادة التأمين واستراتيجياتها", desc: "كيفية توزيع المخاطر بين شركات التأمين", url: "https://youtu.be/ALGmPQtBGpY" }
+            ]},
+            { id: "manacc", name: "المحاسبة الإدارية", icon: "fas fa-chart-line", videos: [
+                { title: "مدخل إلى المحاسبة الإدارية", desc: "الفرق بين المحاسبة المالية والإدارية", url: "https://youtu.be/Mj-DyLnpVTs" },
+                { title: "تحليل التكلفة-حجم-الربح", desc: "نقطة التعادل واتخاذ القرارات الاستراتيجية", url: "https://youtu.be/7O1Vq5-0CAI" },
+                { title: "الموازنات التخطيطية", desc: "إعداد الموازنات التشغيلية والرأسمالية", url: "https://youtu.be/_B8lYq-4HqA" },
+                { title: "المحاسبة على أساس النشاط ABC", desc: "توزيع التكاليف بدقة عالية", url: "https://youtu.be/NgxxS7pWYmw" },
+                { title: "تقارير الأداء والانحرافات", desc: "تحليل الفروق واتخاذ الإجراءات التصحيحية", url: "https://youtu.be/sYBSCL0oSQw" },
+                { title: "اتخاذ القرارات الاستراتيجية", desc: "التسعير والمزيج المنتج الأمثل", url: "https://youtu.be/PWJ5KlT2ZDo" }
+            ]},
+            { id: "supply", name: "إدارة مواد وامداد", icon: "fas fa-truck", videos: [
+                { title: "أسس إدارة سلسلة التوريد", desc: "من المورد إلى العميل", url: "https://youtu.be/Mi1QBxVjZAw" },
+                { title: "تخطيط متطلبات المواد MRP", desc: "نظم تخطيط الإنتاج المتكاملة", url: "https://youtu.be/_Yk4wte6tUc" },
+                { title: "إدارة المخزون الأمثل", desc: "نموذج EOQ وتقنيات التحكم", url: "https://youtu.be/6ZtHZlYJ3Mk" },
+                { title: "المشتريات الاستراتيجية", desc: "مفاوضات الموردين واختيارهم", url: "https://youtu.be/fH2lXON-0fY" },
+                { title: "لوجستيات النقل والتوزيع", desc: "تقنيات التخزين الحديثة", url: "https://youtu.be/7oXgbZqWwLg" },
+                { title: "تقنيات Blockchain", desc: "الشفافية وتتبع المنتجات", url: "https://youtu.be/syvmEa3gRKw" }
+            ]},
+            { id: "inteco", name: "اقتصاد دولي", icon: "fas fa-globe-asia", videos: [
+                { title: "النظريات الكلاسيكية", desc: "الميزة النسبية والمطلقة", url: "https://youtu.be/WyVrzMJcIQA" },
+                { title: "سياسات التجارة", desc: "الرسوم الجمركية والحصص", url: "https://youtu.be/9jE9kPvYl1w" },
+                { title: "ميزان المدفوعات", desc: "تأثير تقلبات العملات", url: "https://youtu.be/5HXQ2NdnAIg" },
+                { title: "المنظمات الاقتصادية", desc: "WTO, IMF ودورها", url: "https://youtu.be/ly9CkmK2BGA" },
+                { title: "التكامل الاقتصادي", desc: "الاتحاد الأوروبي", url: "https://youtu.be/kC6e5WcDgwQ" },
+                { title: "العولمة", desc: "الاستثمار الأجنبي المباشر", url: "https://youtu.be/VIaCkHxrE7k" }
+            ]},
+            { id: "taxacc", name: "المحاسبة الضريبية", icon: "fas fa-file-invoice-dollar", videos: [
+                { title: "مقدمة في النظام الضريبي", desc: "أنواع الضرائب وأساسياتها", url: "https://youtu.be/2nOfmGcx9R0" },
+                { title: "ضريبة الدخل على الأفراد", desc: "الوعاء الضريبي والإعفاءات", url: "https://youtu.be/MuWr8w_7FOw" },
+                { title: "ضريبة الدخل على الشركات", desc: "حساب الضريبة والإقرارات", url: "https://youtu.be/sAUo-bxZ-lQ" },
+                { title: "ضريبة القيمة المضافة", desc: "آلية التسجيل والخصم", url: "https://youtu.be/XWqZ_XRmqCU" },
+                { title: "الإقرارات الضريبية", desc: "نماذج الإقرارات والمواعيد", url: "https://youtu.be/yCzWoC94m9k" },
+                { title: "التخطيط الضريبي", desc: "استراتيجيات التقليل القانوني", url: "https://youtu.be/dZg6TvI-jro" }
+            ]},
+            { id: "audit", name: "الرقابة والمراجعة", icon: "fas fa-clipboard-list", videos: [
+                { title: "مفاهيم التدقيق", desc: "أنواع المراجعة وأهدافها", url: "https://youtu.be/bH_sd0xUqBQ" },
+                { title: "معايير المراجعة ISA", desc: "الإطار المهني الدولي", url: "https://youtu.be/-fCqQ_y8XU8" },
+                { title: "تخطيط المراجعة", desc: "تقييم المخاطر وتحديد الأهمية النسبية", url: "https://youtu.be/l96KjXa-FlA" },
+                { title: "إجراءات المراجعة", desc: "جمع الأدلة والإثباتات", url: "https://youtu.be/33pzG4w5cQs" },
+                { title: "تقرير المراجعة", desc: "أنواع الرأي وصياغة التقرير", url: "https://youtu.be/g8c1XJ6UqnI" },
+                { title: "الرقابة الداخلية", desc: "نظام الرقابة وتقييمه", url: "https://youtu.be/fGvUa-8lFqE" }
+            ]},
+            { id: "hr", name: "الموارد البشرية", icon: "fas fa-users", videos: [
+                { title: "أساسيات HR", desc: "التخطيط للقوى العاملة", url: "https://youtu.be/hj5dP_yMhAk" },
+                { title: "التوظيف والاختيار", desc: "مقابلات التقييم واختيار الكفاءات", url: "https://youtu.be/QaK1tOl6gM0" },
+                { title: "التدريب والتطوير", desc: "تنمية الكفاءات البشرية", url: "https://youtu.be/tFteNYiG-bs" },
+                { title: "تقييم الأداء", desc: "KPI و360 درجة", url: "https://youtu.be/E0nUlyOFKc8" },
+                { title: "التعويضات والحوافز", desc: "هياكل الرواتب وأنظمة المكافآت", url: "https://youtu.be/0_BlSQ6lkbY" },
+                { title: "علاقات الموظفين", desc: "قوانين العمل وحل النزاعات", url: "https://youtu.be/sMwSQcOYsCM" }
+            ]}
+        ];
+
+        // State
+        let activeSubjectId = subjectsData[0].id;
+        let currentSearchTerm = "";
+
+        // Helper Functions
+        function getYouTubeId(url) {
+            if (!url) return null;
+            const patterns = [
+                /(?:youtube\.com\/watch\?v=)([^&]+)/i,
+                /(?:youtu\.be\/)([^?]+)/i
+            ];
+            for (let pattern of patterns) {
+                const match = url.match(pattern);
+                if (match && match[1]) return match[1];
+            }
+            return null;
+        }
+
+        function getThumbnailUrl(url) {
+            const id = getYouTubeId(url);
+            return id ? `https://img.youtube.com/vi/${id}/maxresdefault.jpg` : null;
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/[&<>]/g, function(m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                return m;
+            });
+        }
+
+        // Render Tabs
+        function renderTabs() {
+            const container = document.getElementById('tabsContainer');
+            if (!container) return;
+            
+            container.innerHTML = subjectsData.map(sub => `
+                <button class="tab-btn ${sub.id === activeSubjectId ? 'active' : ''}" data-id="${sub.id}">
+                    <i class="${sub.icon}"></i> ${sub.name}
+                </button>
+            `).join('');
+            
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    activeSubjectId = btn.dataset.id;
+                    renderTabs();
+                    renderVideos();
+                });
+            });
+        }
+
+        // Render Videos
+        function renderVideos() {
+            const subject = subjectsData.find(s => s.id === activeSubjectId);
+            if (!subject) return;
+            
+            let videos = subject.videos;
+            if (currentSearchTerm) {
+                const term = currentSearchTerm.toLowerCase();
+                videos = videos.filter(v => 
+                    v.title.toLowerCase().includes(term) || 
+                    v.desc.toLowerCase().includes(term)
+                );
+            }
+            
+            const container = document.getElementById('videosContainer');
+            if (!container) return;
+            
+            if (videos.length === 0) {
+                container.innerHTML = '<div class="no-results"><i class="fas fa-search"></i> لا توجد نتائج مطابقة للبحث</div>';
+                return;
+            }
+            
+            container.innerHTML = videos.map(video => {
+                const thumb = getThumbnailUrl(video.url);
+                return `
+                    <div class="video-card" data-url="${video.url}">
+                        <div class="video-thumbnail" style="background-image: url('${thumb || ''}'); background-size: cover;">
+                            <i class="fas fa-play-circle play-icon"></i>
+                        </div>
+                        <div class="video-info">
+                            <h3 class="video-title">${escapeHtml(video.title)}</h3>
+                            <p class="video-description">${escapeHtml(video.desc)}</p>
+                            <button class="watch-btn" data-url="${video.url}">
+                                <i class="fab fa-youtube"></i> مشاهدة الفيديو
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            // Add click handlers
+            document.querySelectorAll('.video-card, .watch-btn').forEach(el => {
+                el.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const url = el.closest('[data-url]')?.dataset.url || el.dataset.url;
+                    if (url) window.open(url, '_blank');
+                });
+            });
+        }
+
+        // Search Handler
+        function handleSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const mobileSearch = document.getElementById('mobileSearchInput');
+            currentSearchTerm = searchInput?.value || mobileSearch?.value || '';
+            if (mobileSearch && mobileSearch.value !== currentSearchTerm) {
+                mobileSearch.value = currentSearchTerm;
+            }
+            if (searchInput && searchInput.value !== currentSearchTerm) {
+                searchInput.value = currentSearchTerm;
+            }
+            renderVideos();
+        }
+
+        // Theme Toggle
+        function initTheme() {
+            const savedTheme = localStorage.getItem('accucore-theme');
+            const isDark = savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            
+            if (isDark) {
+                document.body.classList.add('dark-mode');
+                document.getElementById('themeIcon').className = 'fas fa-sun';
+            } else {
+                document.body.classList.remove('dark-mode');
+                document.getElementById('themeIcon').className = 'fas fa-moon';
+            }
+        }
+        
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            const icon = document.getElementById('themeIcon');
+            icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+            localStorage.setItem('accucore-theme', isDark ? 'dark' : 'light');
+        }
+
+        // Header Scroll Effect
+        function handleScroll() {
+            const header = document.getElementById('header');
+            const backBtn = document.getElementById('backToTop');
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / scrollHeight) * 100;
+            
+            document.getElementById('progressBar').style.width = scrollPercent + '%';
+            
+            if (scrollTop > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+            if (scrollTop > 400) {
+                backBtn.classList.add('active');
+            } else {
+                backBtn.classList.remove('active');
+            }
+        }
+
+        // Typing Effect
+        function startTypingEffect() {
+            const heroTitle = document.getElementById('heroTitle');
+            const originalText = heroTitle.innerText;
+            heroTitle.innerText = '';
+            let i = 0;
+            
+            function type() {
+                if (i < originalText.length) {
+                    heroTitle.innerText += originalText[i];
+                    i++;
+                    setTimeout(type, 50);
+                }
+            }
+            type();
+        }
+
+        // Initialize
+        function init() {
+            renderTabs();
+            renderVideos();
+            initTheme();
+            startTypingEffect();
+            
+            // Event Listeners
+            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+            document.getElementById('searchInput').addEventListener('input', handleSearch);
+            document.getElementById('mobileSearchInput').addEventListener('input', handleSearch);
+            document.getElementById('subscribeForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const input = e.target.querySelector('.newsletter-input');
+                if (input.value.includes('@')) {
+                    alert('✅ تم الاشتراك بنجاح! شكراً لانضمامك');
+                    input.value = '';
+                } else {
+                    alert('❌ يرجى إدخال بريد إلكتروني صحيح');
+                }
+            });
+            
+            // Mobile Menu
+            const mobileBtn = document.getElementById('mobileMenuBtn');
+            const mobileNav = document.getElementById('mobileNav');
+            const mobileClose = document.getElementById('mobileNavClose');
+            
+            mobileBtn.addEventListener('click', () => mobileNav.classList.add('active'));
+            mobileClose.addEventListener('click', () => mobileNav.classList.remove('active'));
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                link.addEventListener('click', () => mobileNav.classList.remove('active'));
+            });
+            
+            // Back to Top
+            document.getElementById('backToTop').addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            
+            // Smooth scroll for nav links
+            document.querySelectorAll('.nav-link, .hero-btn').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const href = link.getAttribute('href');
+                    if (href && href.startsWith('#')) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+                });
+            });
+            
+            window.addEventListener('scroll', handleScroll);
+        }
+        
+        // Run when page loads
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
